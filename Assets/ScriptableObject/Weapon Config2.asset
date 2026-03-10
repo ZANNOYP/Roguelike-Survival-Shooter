@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06281803e8db91a4bac1acf039d37ac6, type: 3}
+  m_Name: Weapon Config2
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 8301554290323599829, guid: 3705c8e5f12c10647a2f03af5f167c16, type: 3}
+  defaultGenerateInterval: 0.15
+  defaultDemage: 2
+  maxBulletCount: 5
+  defaultBulletCount: 2
+  spreadAngle: 40
+  defaultAtkRange: 8
+  defaultMoveSpeed: 5
+  defaultDeadTime: 0.5
+  defaultRotatoSpeed: 5
+  defaultRadius: 1

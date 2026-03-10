@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0633edc2a899f644a97ddb232c88149, type: 3}
+  m_Name: Monster Config2
+  m_EditorClassIdentifier: 
+  monsterPrefab: {fileID: 4264023516304988248, guid: 9968325388b748a4ab022767b6a32e40, type: 3}
+  hp: 2
+  contactDamage: 1
+  moveSpeed: 6
+  exp: 2
+  eliteVersion: {fileID: 11400000, guid: 8dbd43b2ed4c5584383010511dec15c6, type: 2}
