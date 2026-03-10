@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Bullet Interval Upgrade
   m_EditorClassIdentifier: 
   Name: "\u653B\u901F"
-  Description: "\u653B\u51FB\u52A0\u5FEB110%"
+  Description: "\u653B\u51FB\u52A0\u5FEB10%"
   decreaseGenerateInterval: 0.1
