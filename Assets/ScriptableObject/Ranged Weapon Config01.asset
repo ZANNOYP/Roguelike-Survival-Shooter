@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37f6d2871de0fd141bb4713ecb24f0c2, type: 3}
+  m_Name: Ranged Weapon Config01
+  m_EditorClassIdentifier: 
+  weaponName: "\u624B\u67AA"
+  description: "\u4F24\u5BB3\u4E2D,\u5C04\u901F\u8F83\u6162,\u65E0\u7A7F\u900F"
+  baseDamage: 10
+  atkInterval: 1
+  prefab: {fileID: 5569301255901622100, guid: 8c0598e9332b5ab4891704b0fa449b36, type: 3}
+  range: 20
+  projectileCount: 1
+  spreadAngle: 0
+  basePenetrateCount: 0
+  projectileConfig: {fileID: 11400000, guid: 70ca11f447424864fafa6f44fb342410, type: 2}
