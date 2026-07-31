@@ -11,6 +11,8 @@ public class WeaponSystem : MonoBehaviour
     public List<Weapon> weapons = new List<Weapon>();
     // 玩家
     public Transform player;
+    // 武器旋转根对象
+    public Transform weaponRoot;
     // 玩家数据
     private PlayerData playerData;
 
@@ -30,11 +32,12 @@ public class WeaponSystem : MonoBehaviour
     /// <param name="weConfig"></param>
     public void Equip(WeaponConfig weConfig)
     {
-        GameObject weaponObj = GameObject.Instantiate(weConfig.prefab, transform);
+        GameObject weaponObj = GameObject.Instantiate(weConfig.prefab, weaponRoot);
         Weapon weapon = weaponObj.GetComponent<Weapon>();
 
         weapon.data.Init(weConfig);
         weapon.player = player;
+        weapon.weaponRoot = weaponRoot;
         weapons.Add(weapon);
         weapon.attackCoroutine = StartCoroutine(AttackCoroutine(weapon));
     }

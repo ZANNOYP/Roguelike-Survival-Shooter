@@ -6,11 +6,15 @@ using UnityEngine;
 /// </summary>
 public class RangedWeapon : Weapon
 {
+    // 开火点
+    public Transform firePoint;
     public override void Atk()
     {
         // 没有敌人进入范围 直接返回
-        EnemyControl enemy = EnemyManager.Instance.GetNearestEnemy(data.weaponConfig);
+        EnemyControl enemy = EnemyManager.Instance.GetAtkEnemy(data.weaponConfig);
         if (enemy == null) return;
+
+        if (!isAimReady) return; 
 
         Vector2 dir = (enemy.transform.position - transform.position).normalized;
         RangedWeaponConfig rwConfig = data.weaponConfig as RangedWeaponConfig;
@@ -18,7 +22,7 @@ public class RangedWeapon : Weapon
         // 投射物初始化数据
         ProjectileData projectileData = new ProjectileData();
 
-        projectileData.birthPos = transform.position;
+        projectileData.birthPos = firePoint.position;
         float realDamage = (rwConfig.baseDamage + data.bonusDamage) * playerData.damageMultiplier;
         projectileData.damage = realDamage;
         int realPenetrateCount = (rwConfig.basePenetrateCount + data.bonusPenetrateCount) + playerData.globalPenetrateCount;

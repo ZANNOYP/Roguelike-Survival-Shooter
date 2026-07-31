@@ -12,9 +12,17 @@ public abstract class Weapon : MonoBehaviour
     public Transform player;
     // 攻击协程
     public Coroutine attackCoroutine;
-
+    // 武器旋转根对象
+    public Transform weaponRoot;
+    // 武器旋转速度
+    public float rotateSpeed = 180f;
     // 玩家数据
     protected PlayerData playerData;
+    // 正在挥砍
+    protected bool isSwing;
+    // 是否瞄准完毕
+    protected bool isAimReady;
+    
 
     private void Awake()
     {
@@ -25,6 +33,42 @@ public abstract class Weapon : MonoBehaviour
     {
         playerData = DataManager.instance.playerRuntimeData;
     }
+
+    private void Update()
+    {
+        WeaponAiming();
+    }
+
+    /// <summary>
+    /// 武器瞄准
+    /// </summary>
+    public void WeaponAiming()
+    {
+        if (isSwing) return;
+        // 没有敌人进入范围 直接返回
+        EnemyControl enemyControl = EnemyManager.Instance.GetNearestEnemy();
+        if (enemyControl == null)
+        {
+            weaponRoot.rotation = Quaternion.identity;
+            return;
+        }
+        Vector3 dir = (enemyControl.transform.position - transform.position).normalized;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
+
+        weaponRoot.rotation = Quaternion.RotateTowards(weaponRoot.rotation, targetRotation, rotateSpeed * Time.deltaTime);
+
+        float angle2 = Quaternion.Angle(weaponRoot.rotation, targetRotation);
+        if (angle2 < 10f)
+        {
+            isAimReady = true;
+        }
+        else
+        {
+            isAimReady = false;
+        }
+    }
+
     /// <summary>
     /// 攻击
     /// </summary>

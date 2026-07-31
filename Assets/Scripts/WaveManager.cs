@@ -115,7 +115,7 @@ public class WaveManager : MonoBehaviour
     {
         while (EnemyManager.Instance.GetAliveEnemyCount() > 0) 
         {
-            yield return null;
+            yield return new WaitForSeconds(0.5f);
         }
     }
 

@@ -64,7 +64,7 @@ public class EnemyManager : MonoBehaviour
     /// 获取离玩家最近敌人
     /// </summary>
     /// <returns></returns>
-    public EnemyControl GetNearestEnemy(WeaponConfig weaponConfig)
+    public EnemyControl GetNearestEnemy()
     {
         float minDistance = float.MaxValue;
         EnemyControl enemy = null;
@@ -73,11 +73,28 @@ public class EnemyManager : MonoBehaviour
             if (enemies[i].isDead) continue;
 
             float nowDistance = Vector3.Distance(enemies[i].transform.position, player.transform.position);
-            if (nowDistance <= weaponConfig.range && nowDistance < minDistance) 
+            if (nowDistance < minDistance) 
             {
                 minDistance = nowDistance;
                 enemy = enemies[i];
             }
+        }
+        return enemy;
+    }
+
+    /// <summary>
+    /// 获取离玩家最近可攻击敌人
+    /// </summary>
+    /// <returns></returns>
+    public EnemyControl GetAtkEnemy(WeaponConfig weaponConfig)
+    {
+        EnemyControl enemy = GetNearestEnemy();
+        if (enemy == null) return enemy;
+
+        float nowDistance = Vector3.Distance(enemy.transform.position, player.transform.position);
+        if (nowDistance > weaponConfig.range)
+        {
+            enemy = null;
         }
         return enemy;
     }

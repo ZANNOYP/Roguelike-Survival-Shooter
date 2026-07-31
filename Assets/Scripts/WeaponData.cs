@@ -27,4 +27,13 @@ public class WeaponData
     {
         weaponConfig = config;
     }
+
+    /// <summary>
+    /// 得到武器伤害
+    /// </summary>
+    /// <returns></returns>
+    public float GetDamage()
+    {
+        return weaponConfig.baseDamage + bonusDamage;
+    }
 }

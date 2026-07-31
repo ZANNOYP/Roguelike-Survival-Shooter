@@ -548,7 +548,7 @@ Transform:
   m_GameObject: {fileID: 207473247}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 36.46496, y: -76.31741, z: 0.17946024}
+  m_LocalPosition: {x: 36.46496, y: -63.7, z: 0.17946024}
   m_LocalScale: {x: 240.60008, y: 23.987597, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -641,7 +641,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.43137255}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2642,6 +2642,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 834726572}
   m_CullTransparentMesh: 1
+--- !u!1 &871436969
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 871436970}
+  m_Layer: 0
+  m_Name: WeaponRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &871436970
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871436969}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 998078040}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &962583120
 GameObject:
   m_ObjectHideFlags: 0
@@ -2719,7 +2750,7 @@ Transform:
   m_GameObject: {fileID: 967428510}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 148.05496, y: -1.0712128, z: 0.17946024}
+  m_LocalPosition: {x: 127.7, y: -1.0712128, z: 0.17946024}
   m_LocalScale: {x: 20.607666, y: 148.73338, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2812,7 +2843,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.43137255}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2927,7 +2958,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 871436970}
   m_Father: {fileID: 1655197427}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &998078041
@@ -2944,6 +2976,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapons: []
   player: {fileID: 1655197427}
+  weaponRoot: {fileID: 871436970}
 --- !u!1 &1038198155
 GameObject:
   m_ObjectHideFlags: 0
@@ -3239,7 +3272,7 @@ Transform:
   m_GameObject: {fileID: 1155514877}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -73.835045, y: 0.58258724, z: 0.17946024}
+  m_LocalPosition: {x: -52.65, y: 0.58258724, z: 0.17946024}
   m_LocalScale: {x: 20.607666, y: 148.73338, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3332,7 +3365,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.43137255}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4678,7 +4711,7 @@ Transform:
   m_GameObject: {fileID: 1678845247}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 36.764957, y: 81.08259, z: 0.17946024}
+  m_LocalPosition: {x: 36.764957, y: 66.5, z: 0.17946024}
   m_LocalScale: {x: 240.60008, y: 23.987597, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4771,7 +4804,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.43137255}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5339,8 +5372,8 @@ MonoBehaviour:
   enemyPrefab: {fileID: 2897734361297708500, guid: 464c119415299b04289e522233c7b219, type: 3}
   minAngle: 0
   maxAngle: 360
-  minRadius: 10
-  maxRadius: 15
+  minRadius: 20
+  maxRadius: 25
   maxEnemyCount: 30
 --- !u!4 &1894967303
 Transform:
@@ -5960,6 +5993,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 800dae9db2be8c541b4eea6f3d15f0bc, type: 2}
   - {fileID: 11400000, guid: a5b83787c79e7a04ba418b922db64a16, type: 2}
   - {fileID: 11400000, guid: c01628337e0ea1d4bbbbea58ba279356, type: 2}
+  - {fileID: 11400000, guid: 21cac9ded219f974a812227f22e0c6d8, type: 2}
   selectPanel: {fileID: 1293635248}
   player: {fileID: 1655197428}
 --- !u!1 &2121642965
