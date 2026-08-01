@@ -11,15 +11,22 @@ public class MeleeWeapon : Weapon
     public Collider2D col;
     // 一次攻击已伤害敌人
     private HashSet<EnemyHealth> hitTargets = new HashSet<EnemyHealth>();
+    // 击退数据
+    private RepelData repelData;
 
     public override void Atk()
     {
         // 没有敌人进入范围 直接返回
         EnemyControl enemyControl = EnemyManager.Instance.GetAtkEnemy(data.weaponConfig);
         if (enemyControl == null) return;
-
         Vector3 dir = (enemyControl.transform.position - transform.position).normalized;
         MeleeWeaponConfig mwConfig = data.weaponConfig as MeleeWeaponConfig;
+        if (repelData == null)
+        {
+            repelData = new RepelData();
+        }
+        repelData.repelSpeed = mwConfig.repelSpeed;
+        repelData.repelTime = mwConfig.repelTime;
         StartCoroutine(Swing(dir, mwConfig));
     }
 
@@ -75,7 +82,7 @@ public class MeleeWeapon : Weapon
             {
                 hitTargets.Add(enemy);
                 float damage = data.GetDamage() * playerData.damageMultiplier;
-                enemy.ChangeHp(-damage);
+                enemy.ChangeHp(-damage, repelData);
             }
         }
     }

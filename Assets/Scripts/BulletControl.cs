@@ -24,6 +24,8 @@ public class BulletControl : MonoBehaviour
     private float timer;
     // 存活时间
     private float lifetime;
+    // 击退数据
+    private RepelData repelData;
 
     private void Awake()
     {
@@ -68,6 +70,7 @@ public class BulletControl : MonoBehaviour
         SetLifeTime(data.lifetime);
         timer = 0;
         SetRotation();
+        SetRepelData(data.repelData);
 
         Rebirth();
         Move();
@@ -137,6 +140,15 @@ public class BulletControl : MonoBehaviour
     }
 
     /// <summary>
+    /// 设置击退数据
+    /// </summary>
+    /// <param name="repelData"></param>
+    public void SetRepelData(RepelData repelData)
+    {
+        this.repelData = repelData;
+    }
+
+    /// <summary>
     /// 撞击敌人
     /// </summary>
     /// <param name="enemy"></param>
@@ -147,7 +159,7 @@ public class BulletControl : MonoBehaviour
         // 添加敌人
         hitTargets.Add(enemy);
         // 敌人掉血
-        enemy.ChangeHp(-damage);
+        enemy.ChangeHp(-damage, repelData);
 
         if (penetrateCount <= 0)
         {

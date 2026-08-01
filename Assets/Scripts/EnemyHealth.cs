@@ -15,6 +15,8 @@ public class EnemyHealth : MonoBehaviour
     private EnemyControl enemy;
     // 敌人死亡委托
     private Action deadAction;
+    // 敌人击退委托
+    private Action<RepelData> repelAction;
 
     private void Awake()
     {
@@ -37,13 +39,17 @@ public class EnemyHealth : MonoBehaviour
     /// 改变血量
     /// </summary>
     /// <param name="value"></param>
-    public void ChangeHp(float value)
+    public void ChangeHp(float value, RepelData repelData = null)
     {
         nowHp = Mathf.Clamp(nowHp + value, 0, maxHp);
 
         if (nowHp <= 0)
         {
             OnDead();
+        }
+        else if (repelData != null && nowHp < maxHp) 
+        {
+            OnRepel(repelData);
         }
     }
 
@@ -62,6 +68,23 @@ public class EnemyHealth : MonoBehaviour
     public void OnDead()
     {
         deadAction?.Invoke();
+    }
+
+    /// <summary>
+    /// 注册敌人击退事件
+    /// </summary>
+    /// <param name="action"></param>
+    public void RegisterRepelAction(Action<RepelData> action)
+    {
+        repelAction += action;
+    }
+
+    /// <summary>
+    /// 击退事件调用
+    /// </summary>
+    public void OnRepel(RepelData repelData)
+    {
+        repelAction?.Invoke(repelData);
     }
 
     /// <summary>

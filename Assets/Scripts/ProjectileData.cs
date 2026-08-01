@@ -30,4 +30,8 @@ public class ProjectileData
     /// 存活时间
     /// </summary>
     public float lifetime;
+    /// <summary>
+    /// 击退数据
+    /// </summary>
+    public RepelData repelData;
 }

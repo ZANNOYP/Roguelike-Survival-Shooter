@@ -32,6 +32,14 @@ public abstract class WeaponConfig : ScriptableObject
     /// </summary>
     public float range;
     /// <summary>
+    /// 击退速度
+    /// </summary>
+    public float repelSpeed;
+    /// <summary>
+    /// 击退时间
+    /// </summary>
+    public float repelTime;
+    /// <summary>
     /// 选择武器应用
     /// </summary>
     public abstract void Apply();

@@ -29,6 +29,10 @@ public class RangedWeapon : Weapon
         projectileData.penetrateCount = realPenetrateCount;
         projectileData.moveSpeed = projectileConfig.moveSpeed;
         projectileData.lifetime = projectileConfig.lifetime;
+        RepelData repelData = new RepelData();
+        repelData.repelSpeed = rwConfig.repelSpeed;
+        repelData.repelTime = rwConfig.repelTime;
+        projectileData.repelData = repelData;
         // 单发
         if (rwConfig.projectileCount == 1)
         {

@@ -18,6 +18,8 @@ MonoBehaviour:
   atkInterval: 2
   prefab: {fileID: 5569301255901622100, guid: 8c0598e9332b5ab4891704b0fa449b36, type: 3}
   range: 10
+  repelSpeed: 30
+  repelTime: 0.2
   projectileCount: 8
   spreadAngle: 30
   basePenetrateCount: 1
