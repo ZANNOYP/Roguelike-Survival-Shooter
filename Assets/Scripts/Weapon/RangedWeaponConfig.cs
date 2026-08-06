@@ -23,9 +23,4 @@ public class RangedWeaponConfig : WeaponConfig
     /// 投射物配置数据
     /// </summary>
     public ProjectileConfig projectileConfig;
-
-    public override void Apply()
-    {
-        WeaponSystem.instance.Equip(this);
-    }
 }

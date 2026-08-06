@@ -35,7 +35,7 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         playerData = DataManager.instance.playerRuntimeData;
-        Rebirth();
+        ResetHp();
     }
 
     // Update is called once per frame
@@ -64,7 +64,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (nowHp <= 0)
         {
-            OnDead();
+            GameFlowManager.instance.GameOver(false);
         }
     }
 
@@ -78,26 +78,9 @@ public class PlayerHealth : MonoBehaviour
     }
 
     /// <summary>
-    /// 注册玩家死亡事件
+    /// 回满血
     /// </summary>
-    /// <param name="action"></param>
-    public void RegisterDeadAction(Action action)
-    {
-        deadAction += action;
-    }
-
-    /// <summary>
-    /// 死亡事件调用
-    /// </summary>
-    public void OnDead()
-    {
-        deadAction?.Invoke();
-    }
-
-    /// <summary>
-    /// 重生
-    /// </summary>
-    public void Rebirth()
+    public void ResetHp()
     {
         ChangeHp(playerData.maxHp);
         delayFill.fillAmount = 1f;

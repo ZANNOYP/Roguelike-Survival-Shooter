@@ -35,6 +35,8 @@ public class WeaponSystem : MonoBehaviour
         GameObject weaponObj = GameObject.Instantiate(weConfig.prefab, weaponRoot);
         Weapon weapon = weaponObj.GetComponent<Weapon>();
 
+        Debug.Log($"active:{weapon.gameObject.activeInHierarchy}");
+        Debug.Log($"enabled:{weapon.enabled}");
         weapon.data.Init(weConfig);
         weapon.player = player;
         weapon.weaponRoot = weaponRoot;
@@ -77,9 +79,9 @@ public class WeaponSystem : MonoBehaviour
     /// </summary>
     public void UnEquipAll()
     {
-        for (int i = 0; i < weapons.Count; i++)
+        while (weapons.Count > 0)
         {
-            UnEquip(weapons[i]);
+            UnEquip(weapons[0]);
         }
     }
 }

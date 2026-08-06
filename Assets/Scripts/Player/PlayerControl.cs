@@ -25,7 +25,6 @@ public class PlayerControl : MonoBehaviour
 
     private void Start()
     {
-        PlayerHealth.instance.RegisterDeadAction(Dead);
         playerData = DataManager.instance.playerRuntimeData;
     }
 
@@ -63,7 +62,6 @@ public class PlayerControl : MonoBehaviour
     {
         gameObject.SetActive(false);
         isDead = true;
-        WeaponSystem.instance.UnEquipAll();
     }
 
     /// <summary>
@@ -72,24 +70,30 @@ public class PlayerControl : MonoBehaviour
     public void Rebirth()
     {
         gameObject.SetActive(true);
-        transform.position = rebirthPos;
         DataManager.instance.ResetData();
-        PlayerHealth.instance.Rebirth();
+        PlayerHealth.instance.ResetHp();
         PlayerExperience.Instance.ResetExp();
+    }
+
+    /// <summary>
+    /// 开始控制
+    /// </summary>
+    public void StartControl()
+    {
         isDead = false;
         isPause = false;
     }
 
     public void StopPause()
     {
-        PlayerHealth.instance.Rebirth();
         isPause = false;
+        PlayerHealth.instance.ResetHp();
     }
 
     public void Pause()
     {
-        rb.velocity = Vector2.zero;
         isPause = true;
+        rb.velocity = Vector2.zero;
     }
 
     public void ResetPos()

@@ -7,7 +7,7 @@ using UnityEngine;
 public abstract class Weapon : MonoBehaviour
 {
     // 武器运行时数据
-    public WeaponData data;
+    public WeaponData data = new WeaponData();
     // 玩家
     public Transform player;
     // 攻击协程
@@ -23,11 +23,6 @@ public abstract class Weapon : MonoBehaviour
     // 是否瞄准完毕
     protected bool isAimReady;
     
-
-    private void Awake()
-    {
-        data = new WeaponData();
-    }
     // Start is called before the first frame update
     void Start()
     {

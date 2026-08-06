@@ -39,8 +39,4 @@ public abstract class WeaponConfig : ScriptableObject
     /// 击退时间
     /// </summary>
     public float repelTime;
-    /// <summary>
-    /// 选择武器应用
-    /// </summary>
-    public abstract void Apply();
 }

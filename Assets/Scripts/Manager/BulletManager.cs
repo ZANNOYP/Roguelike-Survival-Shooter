@@ -34,7 +34,6 @@ public class BulletManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerHealth.instance.RegisterDeadAction(KillAllBullets);
         playerData = DataManager.instance.playerRuntimeData;
     }
 

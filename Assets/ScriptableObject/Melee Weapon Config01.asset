@@ -17,9 +17,8 @@ MonoBehaviour:
   baseDamage: 20
   atkInterval: 1
   prefab: {fileID: 2645264114813575401, guid: f193fa8339de12a418d23196361bd339, type: 3}
-  range: 4
+  range: 3.5
   repelSpeed: 30
   repelTime: 0.2
-  atkRange: 1.5
   atkAngle: 120
   atkDuration: 1

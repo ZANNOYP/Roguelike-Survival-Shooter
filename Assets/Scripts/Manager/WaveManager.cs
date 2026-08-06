@@ -27,10 +27,6 @@ public class WaveManager : MonoBehaviour
     {
         instance = this;
     }
-    private void Start()
-    {
-        PlayerHealth.instance.RegisterDeadAction(StopWaveLoop);
-    }
 
     /// <summary>
     /// 开启波次循环
@@ -60,11 +56,7 @@ public class WaveManager : MonoBehaviour
             if (currentWave == waves.Count)
             {
                 // 获胜
-                GamePanel.instance.Hide();
-                EndPanel.instance.Show();
-                BulletManager.instance.KillAllBullets();
-                WeaponSystem.instance.UnEquipAll();
-                PlayerExperience.Instance.ResetStrengthenCount();
+                GameFlowManager.instance.GameOver(true);
                 break;
             }
             // 等待强化
@@ -126,15 +118,21 @@ public class WaveManager : MonoBehaviour
     private IEnumerator WaitForStrengthen()
     {
         int strengthenCount = PlayerExperience.Instance.strengthenCount;
+        UIManager.instance.ShowPanel<EmptyPanel>(false);
         for (int i = 0; i < strengthenCount; i++)
         {
             // 打开强化界面 初始化
-            UpgradeManager.instance.Show();
+            List<UpgradeData> datas = UpgradeManager.instance.GetDatas();
+            UIManager.instance.ShowPanel<UpgradePanel>();
+            UIManager.instance.GetPanel<UpgradePanel>().CreateButtons(datas);
             // 等待强化一次结束
             yield return new WaitUntil(() => UpgradeManager.instance.IsComplete);
             // 隐藏强化面板
-            UpgradeManager.instance.Hide();
+            UIManager.instance.HidePanel<UpgradePanel>();
+            UIManager.instance.GetPanel<UpgradePanel>().ClearButtons();
         }
+        UIManager.instance.HidePanel<EmptyPanel>(false);
+
         PlayerExperience.Instance.ResetStrengthenCount();
     }
 

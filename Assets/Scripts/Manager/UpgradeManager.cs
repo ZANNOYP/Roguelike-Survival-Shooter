@@ -21,9 +21,9 @@ public class UpgradeManager : MonoBehaviour
         playerData = DataManager.instance.playerRuntimeData;
     }
     /// <summary>
-    /// 开启强化界面
+    /// 得到强化数据
     /// </summary>
-    public void Show()
+    public List<UpgradeData> GetDatas()
     {
         isComplete = false;
         // 得到一个强化数据列表
@@ -41,16 +41,9 @@ public class UpgradeManager : MonoBehaviour
             indexs.Add(index);
             newUpgradeDatas.Add(upgradeDatas[index]);
         }
-        // 显示强化面板
-        upgradePanel.Show(newUpgradeDatas);
+        return newUpgradeDatas;
     }
-    /// <summary>
-    /// 隐藏强化界面
-    /// </summary>
-    public void Hide()
-    {
-        upgradePanel.Hide();
-    }
+
     /// <summary>
     /// 选择强化
     /// </summary>
