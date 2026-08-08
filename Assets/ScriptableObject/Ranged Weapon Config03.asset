@@ -20,6 +20,9 @@ MonoBehaviour:
   range: 10
   repelSpeed: 30
   repelTime: 0.2
+  weaponSprite: {fileID: 1218776520, guid: 3774af174d1209b4397d279bd1d8d6a9, type: 3}
+  spritePos: {x: 1.34, y: 0}
+  spriteScale: 0.1342239
   projectileCount: 8
   spreadAngle: 30
   basePenetrateCount: 1

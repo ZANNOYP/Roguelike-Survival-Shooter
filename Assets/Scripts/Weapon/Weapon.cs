@@ -16,6 +16,8 @@ public abstract class Weapon : MonoBehaviour
     public Transform weaponRoot;
     // 武器旋转速度
     public float rotateSpeed = 180f;
+    // 武器图片渲染
+    public SpriteRenderer sr;
     // 玩家数据
     protected PlayerData playerData;
     // 正在挥砍
@@ -45,13 +47,18 @@ public abstract class Weapon : MonoBehaviour
         if (enemyControl == null)
         {
             weaponRoot.rotation = Quaternion.identity;
+            sr.flipY = false;
             return;
         }
         Vector3 dir = (enemyControl.transform.position - transform.position).normalized;
+
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
 
         weaponRoot.rotation = Quaternion.RotateTowards(weaponRoot.rotation, targetRotation, rotateSpeed * Time.deltaTime);
+        
+        Vector2 right = weaponRoot.right;
+        sr.flipY = right.x >= 0 ? false : true; 
 
         float angle2 = Quaternion.Angle(weaponRoot.rotation, targetRotation);
         if (angle2 < 10f)
@@ -68,4 +75,17 @@ public abstract class Weapon : MonoBehaviour
     /// 攻击
     /// </summary>
     public abstract void Atk();
+
+    /// <summary>
+    /// 设置武器贴图
+    /// </summary>
+    public void SetWeaponSprite()
+    {
+        WeaponConfig config = data.weaponConfig;
+        sr.sprite = config.weaponSprite;
+        sr.transform.localPosition = config.spritePos;
+        sr.transform.localScale = config.spriteScale * Vector2.one;
+    }
+
+    
 }

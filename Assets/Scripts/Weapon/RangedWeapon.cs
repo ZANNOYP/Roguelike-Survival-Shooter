@@ -54,4 +54,13 @@ public class RangedWeapon : Weapon
             bullet.Init(projectileData);
         }
     }
+
+    /// <summary>
+    /// 设置开火点位置
+    /// </summary>
+    public void SetFirePointPos()
+    {
+        WeaponConfig config = data.weaponConfig;
+        firePoint.localPosition = config.spritePos;
+    }
 }

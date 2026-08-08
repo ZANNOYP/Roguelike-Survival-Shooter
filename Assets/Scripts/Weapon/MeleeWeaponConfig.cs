@@ -7,8 +7,20 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Weapon/Melee")] 
 public class MeleeWeaponConfig : WeaponConfig
 {
-    // 攻击武器旋转角度
+    /// <summary>
+    /// 攻击武器旋转角度
+    /// </summary>
     public float atkAngle;
-    // 攻击持续时间
+    /// <summary>
+    /// 攻击持续时间
+    /// </summary>
     public float atkDuration;
+    /// <summary>
+    /// 碰撞器偏移
+    /// </summary>
+    public Vector2 colOffset;
+    /// <summary>
+    /// 碰撞器大小
+    /// </summary>
+    public Vector2 colSize;
 }

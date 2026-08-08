@@ -39,4 +39,16 @@ public abstract class WeaponConfig : ScriptableObject
     /// 击退时间
     /// </summary>
     public float repelTime;
+    /// <summary>
+    /// 武器图片
+    /// </summary>
+    public Sprite weaponSprite;
+    /// <summary>
+    /// 武器图片位置
+    /// </summary>
+    public Vector2 spritePos;
+    /// <summary>
+    /// 武器缩放
+    /// </summary>
+    public float spriteScale;
 }

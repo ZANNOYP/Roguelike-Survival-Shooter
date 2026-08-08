@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 37633570430554962}
   - component: {fileID: 4145979849435887383}
   m_Layer: 0
-  m_Name: Square
+  m_Name: WeaponSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -133,6 +133,7 @@ MonoBehaviour:
   player: {fileID: 0}
   weaponRoot: {fileID: 0}
   rotateSpeed: 360
+  sr: {fileID: 4145979849435887383}
   firePoint: {fileID: 8843443722056018635}
 --- !u!1 &7559284083307680275
 GameObject:

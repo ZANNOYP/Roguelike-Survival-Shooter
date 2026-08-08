@@ -87,5 +87,14 @@ public class MeleeWeapon : Weapon
         }
     }
 
-
+    /// <summary>
+    /// 设置碰撞器大小
+    /// </summary>
+    public void SetColSize()
+    {
+        MeleeWeaponConfig meleeWeaponConfig = data.weaponConfig as MeleeWeaponConfig;
+        BoxCollider2D boxCol = col as BoxCollider2D;
+        boxCol.offset = meleeWeaponConfig.colOffset;
+        boxCol.size = meleeWeaponConfig.colSize;
+    }
 }
