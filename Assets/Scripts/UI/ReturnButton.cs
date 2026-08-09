@@ -8,6 +8,7 @@ public class ReturnButton : MonoBehaviour
 {
     public void ReturnMenu()
     {
+        MusicManager.instance.PlayEff(Eff_Type.Button);
         GameFlowManager.instance.GameReady();
     }
 }

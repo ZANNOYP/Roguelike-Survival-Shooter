@@ -11,6 +11,7 @@ public class ExitButton : MonoBehaviour
     /// </summary>
     public void ExitGame()
     {
+        MusicManager.instance.PlayEff(Eff_Type.Button);
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else

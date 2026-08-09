@@ -49,6 +49,7 @@ public class UpgradeManager : MonoBehaviour
     /// </summary>
     public void SelectUpgrade(UpgradeData data)
     {
+        MusicManager.instance.PlayEff(Eff_Type.Button);
         data.Apply();
 
         isComplete = true;

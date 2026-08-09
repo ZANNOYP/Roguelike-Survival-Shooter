@@ -35,6 +35,7 @@ public class SelectManager : MonoBehaviour
     /// <param name="config"></param>
     public void SelectWeapon(WeaponConfig config)
     {
+        MusicManager.instance.PlayEff(Eff_Type.Button);
         WeaponSystem.instance.Equip(config);
         OnWeaponSelected?.Invoke();
     }

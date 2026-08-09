@@ -92,6 +92,7 @@ public class GameFlowManager : MonoBehaviour
 
     private void EnterReady()
     {
+        MusicManager.instance.PlayBgm(Bgm_Type.Menu, 0.8f);
         UIManager.instance.HidePanel<EndPanel>();
         UIManager.instance.ShowPanel<StartPanel>();
         player.Rebirth();
@@ -107,6 +108,7 @@ public class GameFlowManager : MonoBehaviour
 
     private void EnterPlaying()
     {
+        MusicManager.instance.PlayBgm(Bgm_Type.Battle, 0.6f);
         UIManager.instance.HidePanel<SelectPanel>();
         UIManager.instance.HidePanel<EmptyPanel>(false);
         UIManager.instance.GetPanel<SelectPanel>().ClearButtons();
@@ -117,6 +119,10 @@ public class GameFlowManager : MonoBehaviour
 
     private void EnterOver()
     {
+        if (isVic) 
+            MusicManager.instance.PlayBgm(Bgm_Type.Victory, 0.6f);
+        else
+            MusicManager.instance.PlayBgm(Bgm_Type.Defeat);
         UIManager.instance.HidePanel<GamePanel>();
         UIManager.instance.ShowPanel<EndPanel>();
         UIManager.instance.ShowPanel<EmptyPanel>(false);

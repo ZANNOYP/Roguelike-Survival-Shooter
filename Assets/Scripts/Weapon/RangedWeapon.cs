@@ -14,7 +14,9 @@ public class RangedWeapon : Weapon
         EnemyControl enemy = EnemyManager.Instance.GetAtkEnemy(data.weaponConfig);
         if (enemy == null) return;
 
-        if (!isAimReady) return; 
+        if (!isAimReady) return;
+        // 播放音效
+        MusicManager.instance.PlayEff(Eff_Type.Gun);
 
         Vector2 dir = (enemy.transform.position - transform.position).normalized;
         RangedWeaponConfig rwConfig = data.weaponConfig as RangedWeaponConfig;

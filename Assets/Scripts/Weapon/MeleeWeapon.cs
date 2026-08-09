@@ -80,6 +80,7 @@ public class MeleeWeapon : Weapon
             if (hitTargets.Contains(enemy)) return;
             if (enemy != null)
             {
+                MusicManager.instance.PlayEff(Eff_Type.Hit);
                 hitTargets.Add(enemy);
                 float damage = data.GetDamage() * playerData.damageMultiplier;
                 enemy.ChangeHp(-damage, repelData);

@@ -8,6 +8,7 @@ public class StartButton : MonoBehaviour
 {
     public void StartGame()
     {
+        MusicManager.instance.PlayEff(Eff_Type.Button);
         GameFlowManager.instance.WeaponSelect();
     }
 }
