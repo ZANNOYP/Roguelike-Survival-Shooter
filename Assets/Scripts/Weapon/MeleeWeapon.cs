@@ -17,7 +17,7 @@ public class MeleeWeapon : Weapon
     public override void Atk()
     {
         // 没有敌人进入范围 直接返回
-        EnemyControl enemyControl = EnemyManager.Instance.GetAtkEnemy(data.weaponConfig);
+        EnemyBase enemyControl = EnemyManager.Instance.GetAtkEnemy(data.weaponConfig);
         if (enemyControl == null) return;
         Vector3 dir = (enemyControl.transform.position - transform.position).normalized;
         MeleeWeaponConfig mwConfig = data.weaponConfig as MeleeWeaponConfig;

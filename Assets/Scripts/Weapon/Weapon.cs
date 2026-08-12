@@ -43,14 +43,14 @@ public abstract class Weapon : MonoBehaviour
     {
         if (isSwing) return;
         // 没有敌人进入范围 直接返回
-        EnemyControl enemyControl = EnemyManager.Instance.GetNearestEnemy();
-        if (enemyControl == null)
+        EnemyBase enemy = EnemyManager.Instance.GetNearestEnemy();
+        if (enemy == null)
         {
             weaponRoot.rotation = Quaternion.identity;
             sr.flipY = false;
             return;
         }
-        Vector3 dir = (enemyControl.transform.position - transform.position).normalized;
+        Vector3 dir = (enemy.transform.position - transform.position).normalized;
 
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         Quaternion targetRotation = Quaternion.Euler(0, 0, angle);

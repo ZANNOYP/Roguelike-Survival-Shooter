@@ -11,7 +11,7 @@ public class RangedWeapon : Weapon
     public override void Atk()
     {
         // 没有敌人进入范围 直接返回
-        EnemyControl enemy = EnemyManager.Instance.GetAtkEnemy(data.weaponConfig);
+        EnemyBase enemy = EnemyManager.Instance.GetAtkEnemy(data.weaponConfig);
         if (enemy == null) return;
 
         if (!isAimReady) return;

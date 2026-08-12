@@ -1084,7 +1084,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -10
   m_Sprite: {fileID: 21300000, guid: 3a423025cc0ecd54cbdaa21e1d7f2ff9, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8207547, g: 0.8207547, b: 0.8207547, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
@@ -5703,12 +5703,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1655197428}
-  enemyPrefab: {fileID: 2897734361297708500, guid: 464c119415299b04289e522233c7b219, type: 3}
   minAngle: 0
   maxAngle: 360
   minRadius: 20
   maxRadius: 25
-  maxEnemyCount: 30
+  enemyConfigs:
+  - {fileID: 11400000, guid: f3a5a8297d40ee64695524052819cacc, type: 2}
+  - {fileID: 11400000, guid: dfe4e62692038f34f8c3afeb6627806e, type: 2}
+  - {fileID: 11400000, guid: 6c34b4bc1b9fe934ba46d78794d505da, type: 2}
+  enemyTypes: 
 --- !u!4 &1894967303
 Transform:
   m_ObjectHideFlags: 0

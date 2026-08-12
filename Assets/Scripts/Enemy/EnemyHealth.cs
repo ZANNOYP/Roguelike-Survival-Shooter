@@ -7,12 +7,14 @@ using UnityEngine;
 /// </summary>
 public class EnemyHealth : MonoBehaviour
 {
+    // 数据
+    public EnemyData data;
     // 当前血量
     public float nowHp;
     // 最大血量
     public float maxHp = 5;
     // 敌人控制
-    private EnemyControl enemy;
+    //private EnemyBase enemy;
     // 敌人死亡委托
     private Action deadAction;
     // 敌人击退委托
@@ -20,8 +22,7 @@ public class EnemyHealth : MonoBehaviour
 
     private void Awake()
     {
-        enemy = GetComponent<EnemyControl>();
-        Rebirth();
+        //enemy = GetComponent<EnemyControl>();
     }
     // Start is called before the first frame update
     void Start()
@@ -93,5 +94,14 @@ public class EnemyHealth : MonoBehaviour
     public void Rebirth()
     {
         ChangeHp(maxHp);
+    }
+
+    /// <summary>
+    /// 设置最大血量
+    /// </summary>
+    /// <param name="value"></param>
+    public void SetMaxHp(float value)
+    {
+        maxHp = value;
     }
 }

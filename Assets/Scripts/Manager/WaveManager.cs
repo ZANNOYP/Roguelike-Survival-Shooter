@@ -80,9 +80,20 @@ public class WaveManager : MonoBehaviour
         for (int i = 0; i < data.enemyCount; i++) 
         {
             yield return new WaitForSeconds(data.generateInterval);
-            EnemyManager.Instance.RealGenerate();
+            EnemyType type = GetEnemyType();
+            EnemyManager.Instance.RealGenerate(type);
         }
+    }
 
+    /// <summary>
+    /// 获取生成敌人的类型
+    /// </summary>
+    /// <returns></returns>
+    private EnemyType GetEnemyType()
+    {
+        List<EnemyType> enemyTypes = EnemyManager.Instance.enemyTypes;
+        int random = Random.Range(0, enemyTypes.Count);
+        return enemyTypes[random];
     }
 
     /// <summary>
