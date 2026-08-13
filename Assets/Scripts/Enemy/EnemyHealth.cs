@@ -5,54 +5,14 @@ using UnityEngine;
 /// <summary>
 /// 敌人血量
 /// </summary>
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : Health
 {
-    // 数据
-    public EnemyData data;
-    // 当前血量
-    public float nowHp;
     // 最大血量
-    public float maxHp = 5;
-    // 敌人控制
-    //private EnemyBase enemy;
+    private float maxHp;
     // 敌人死亡委托
     private Action deadAction;
-    // 敌人击退委托
-    private Action<RepelData> repelAction;
 
-    private void Awake()
-    {
-        //enemy = GetComponent<EnemyControl>();
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    /// <summary>
-    /// 改变血量
-    /// </summary>
-    /// <param name="value"></param>
-    public void ChangeHp(float value, RepelData repelData = null)
-    {
-        nowHp = Mathf.Clamp(nowHp + value, 0, maxHp);
-
-        if (nowHp <= 0)
-        {
-            OnDead();
-        }
-        else if (repelData != null && nowHp < maxHp) 
-        {
-            OnRepel(repelData);
-        }
-    }
+    protected override float MaxHp => maxHp;
 
     /// <summary>
     /// 注册敌人死亡事件
@@ -66,34 +26,9 @@ public class EnemyHealth : MonoBehaviour
     /// <summary>
     /// 死亡事件调用
     /// </summary>
-    public void OnDead()
+    public override void OnDead()
     {
         deadAction?.Invoke();
-    }
-
-    /// <summary>
-    /// 注册敌人击退事件
-    /// </summary>
-    /// <param name="action"></param>
-    public void RegisterRepelAction(Action<RepelData> action)
-    {
-        repelAction += action;
-    }
-
-    /// <summary>
-    /// 击退事件调用
-    /// </summary>
-    public void OnRepel(RepelData repelData)
-    {
-        repelAction?.Invoke(repelData);
-    }
-
-    /// <summary>
-    /// 重生
-    /// </summary>
-    public void Rebirth()
-    {
-        ChangeHp(maxHp);
     }
 
     /// <summary>

@@ -29,18 +29,17 @@ public enum EnemyType
 /// </summary>
 public class EnemyBase : MonoBehaviour
 {
-    // 移速
-    public float moveSpeed = 6f;
     // 是否死亡
     public bool isDead;
     // 特效
     public ParticleSystem parSystem;
-    // 经验值
-    public int exp = 1;
+    
     /// <summary>
     /// 敌人类型
     /// </summary>
     public EnemyType type;
+    // 碰撞伤害
+    public float ContactDamage => contactDamage;
     // 刚体
     private Rigidbody2D rb;
     // 追踪玩家
@@ -53,6 +52,12 @@ public class EnemyBase : MonoBehaviour
     private bool isRepelled;
     // 图片渲染
     private SpriteRenderer sr;
+    // 碰撞伤害
+    private float contactDamage;
+    // 经验值
+    private int exp;
+    // 移速
+    private float moveSpeed;
 
     private void Awake()
     {
@@ -97,6 +102,7 @@ public class EnemyBase : MonoBehaviour
         sr.color = config.color;
         health.SetMaxHp(config.maxHp);
         type = config.type;
+        contactDamage = config.contactDamage;
     }
 
     /// <summary>
@@ -169,7 +175,7 @@ public class EnemyBase : MonoBehaviour
     {
         //gameObject.SetActive(true);
         isDead = false;
-        health.Rebirth();
+        health.RestoreFullHealth();
         anim.SetBool("isDead", isDead);
     }
 

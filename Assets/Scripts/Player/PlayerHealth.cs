@@ -7,12 +7,8 @@ using UnityEngine.UI;
 /// <summary>
 /// 玩家血量管理
 /// </summary>
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : Health
 {
-    public static PlayerHealth instance;
-
-    // 最大血量
-    public float maxHp = 10;
     // 血量文本
     public TextMeshProUGUI textHp;
     // 血条填充
@@ -21,25 +17,22 @@ public class PlayerHealth : MonoBehaviour
     public Image delayFill;
     // 延迟条变化速度
     public float delaySpeed = 5f;
-    // 当前血量
-    private float nowHp;
     // 玩家死亡事件
-    private Action deadAction;
+    private Action<bool> deadAction;
     // 玩家运行时数据
     private PlayerData playerData;
-    private void Awake()
-    {
-        instance = this;
-    }
+
+    protected override float MaxHp => playerData.maxHp;
+
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
         playerData = DataManager.instance.playerRuntimeData;
-        ResetHp();
+        base.Start();
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         ChangeDelayFill();
     }
@@ -49,40 +42,38 @@ public class PlayerHealth : MonoBehaviour
     /// </summary>
     public void ChangeDelayFill()
     {
+        if (Mathf.Abs(delayFill.fillAmount - hpFill.fillAmount) < 0.01f)
+        {
+            delayFill.fillAmount = hpFill.fillAmount;
+            return;
+        }
         delayFill.fillAmount = Mathf.Lerp(delayFill.fillAmount, hpFill.fillAmount, Time.deltaTime * delaySpeed);
         delayFill.fillAmount = Mathf.Abs(delayFill.fillAmount - hpFill.fillAmount) < 0.01f ? hpFill.fillAmount : delayFill.fillAmount;
     }
 
     /// <summary>
-    /// 血量改变
-    /// </summary>
-    /// <param name="value"></param>
-    public void ChangeHp(float value)
-    {
-        nowHp = Mathf.Clamp(nowHp + value, 0, playerData.maxHp);
-        RefreshUI();
-
-        if (nowHp <= 0)
-        {
-            GameFlowManager.instance.GameOver(false);
-        }
-    }
-
-    /// <summary>
     /// 刷新UI
     /// </summary>
-    public void RefreshUI()
+    protected override void RefreshUI()
     {
-        textHp.text = nowHp + "/" + playerData.maxHp;
-        hpFill.fillAmount = nowHp / playerData.maxHp;
+        textHp.text = nowHp + "/" + MaxHp;
+        hpFill.fillAmount = nowHp / MaxHp;
     }
 
     /// <summary>
-    /// 回满血
+    /// 注册玩家死亡事件
     /// </summary>
-    public void ResetHp()
+    /// <param name="action"></param>
+    public void RegisterDeadAction(Action<bool> action)
     {
-        ChangeHp(playerData.maxHp);
-        delayFill.fillAmount = 1f;
+        deadAction += action;
+    }
+
+    /// <summary>
+    /// 玩家死亡
+    /// </summary>
+    public override void OnDead()
+    {
+        deadAction?.Invoke(false);
     }
 }

@@ -39,4 +39,8 @@ public class EnemyConfig : ScriptableObject
     /// 颜色
     /// </summary>
     public Color color;
+    /// <summary>
+    /// 碰撞伤害
+    /// </summary>
+    public float contactDamage;
 }

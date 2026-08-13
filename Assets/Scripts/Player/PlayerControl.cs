@@ -16,10 +16,13 @@ public class PlayerControl : MonoBehaviour
     private PlayerData playerData;
     // 是否暂停
     private bool isPause;
+    // 玩家血量
+    private PlayerHealth playerHealth;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerHealth = GetComponent<PlayerHealth>();
         isPause = true;
     }
 
@@ -51,7 +54,8 @@ public class PlayerControl : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            PlayerHealth.instance.ChangeHp(-1);
+            EnemyBase enemy = collision.GetComponent<EnemyBase>();
+            playerHealth.ChangeHp(-enemy.ContactDamage);
         }
     }
 
@@ -71,7 +75,7 @@ public class PlayerControl : MonoBehaviour
     {
         gameObject.SetActive(true);
         DataManager.instance.ResetData();
-        PlayerHealth.instance.ResetHp();
+        playerHealth.RestoreFullHealth();
         PlayerExperience.Instance.ResetExp();
     }
 
@@ -87,7 +91,7 @@ public class PlayerControl : MonoBehaviour
     public void StopPause()
     {
         isPause = false;
-        PlayerHealth.instance.ResetHp();
+        playerHealth.RestoreFullHealth();
     }
 
     public void Pause()

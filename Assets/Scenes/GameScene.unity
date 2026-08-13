@@ -2433,55 +2433,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 767743926}
   m_CullTransparentMesh: 1
---- !u!1 &768713902
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 768713904}
-  - component: {fileID: 768713903}
-  m_Layer: 0
-  m_Name: PlayerHealth
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &768713903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 768713902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f851c171e0ce4d74aa6d299df06a40be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHp: 10
-  textHp: {fileID: 1038198158}
-  hpFill: {fileID: 98250705}
-  delayFill: {fileID: 1821117939}
-  delaySpeed: 5
---- !u!4 &768713904
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 768713902}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 199.92471, y: 446.94223, z: -7296.336}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1405674020}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &769988075
 GameObject:
   m_ObjectHideFlags: 0
@@ -4270,7 +4221,6 @@ Transform:
   m_Children:
   - {fileID: 1894967303}
   - {fileID: 962583122}
-  - {fileID: 768713904}
   - {fileID: 769988077}
   - {fileID: 552355263}
   - {fileID: 60961285}
@@ -4820,8 +4770,9 @@ GameObject:
   - component: {fileID: 1655197427}
   - component: {fileID: 1655197426}
   - component: {fileID: 1655197425}
-  - component: {fileID: 1655197428}
   - component: {fileID: 1655197429}
+  - component: {fileID: 1655197428}
+  - component: {fileID: 1655197430}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4973,6 +4924,22 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
+--- !u!114 &1655197430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655197424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f851c171e0ce4d74aa6d299df06a40be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textHp: {fileID: 1038198158}
+  hpFill: {fileID: 98250705}
+  delayFill: {fileID: 1821117939}
+  delaySpeed: 5
 --- !u!1 &1678845247
 GameObject:
   m_ObjectHideFlags: 0

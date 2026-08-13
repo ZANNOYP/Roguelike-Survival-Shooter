@@ -20,3 +20,4 @@ MonoBehaviour:
   maxSize: 50
   type: 3
   color: {r: 0.26666668, g: 0.27058825, b: 0.9843137, a: 1}
+  contactDamage: 4

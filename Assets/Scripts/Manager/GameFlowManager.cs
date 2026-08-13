@@ -21,17 +21,21 @@ public class GameFlowManager : MonoBehaviour
 
     // 玩家
     public PlayerControl player;
+    // 玩家血量
+    private PlayerHealth playerHealth;
     // 是否胜利
     private bool isVic;
 
     private void Awake()
     {
         instance = this;
+        playerHealth = player.GetComponent<PlayerHealth>();
     }
 
     private void Start()
     {
         SelectManager.instance.OnWeaponSelected += GameStart;
+        playerHealth.RegisterDeadAction(GameOver);
     }
 
     /// <summary>
