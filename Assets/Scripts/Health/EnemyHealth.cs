@@ -7,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public class EnemyHealth : Health
 {
+    // 所属阵营
+    public override Faction Faction => Faction.Enemy;
     // 最大血量
     private float maxHp;
     // 敌人死亡委托

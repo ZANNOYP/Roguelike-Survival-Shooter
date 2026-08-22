@@ -8,7 +8,10 @@ using UnityEngine;
 /// </summary>
 public abstract class Health : MonoBehaviour
 {
+    // 所属阵营
+    public abstract Faction Faction { get; }
     // 当前血量
+    [SerializeField]
     protected float nowHp;
     // 最大血量
     protected abstract float MaxHp { get; }
@@ -31,7 +34,7 @@ public abstract class Health : MonoBehaviour
     /// </summary>
     /// <param name="value"></param>
     /// <param name="repelData"></param>
-    public void ChangeHp(float value, RepelData repelData = null)
+    public virtual void ChangeHp(float value, RepelData repelData = null)
     {
         nowHp = Mathf.Clamp(nowHp + value, 0, MaxHp);
         RefreshUI();

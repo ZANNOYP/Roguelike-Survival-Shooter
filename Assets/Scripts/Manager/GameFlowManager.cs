@@ -131,7 +131,7 @@ public class GameFlowManager : MonoBehaviour
         UIManager.instance.ShowPanel<EndPanel>();
         UIManager.instance.ShowPanel<EmptyPanel>(false);
         UIManager.instance.GetPanel<EndPanel>().UpdataTitle(isVic);
-        BulletManager.instance.KillAllBullets();
+        ProjectileManager.instance.KillAllBullets();
         WeaponSystem.instance.UnEquipAll();
         PlayerExperience.Instance.ResetStrengthenCount();
         if (!isVic)

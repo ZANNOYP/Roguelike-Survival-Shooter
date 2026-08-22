@@ -19,4 +19,24 @@ public class ProjectileConfig : ScriptableObject
     /// 存活时间
     /// </summary>
     public float lifetime;
+    /// <summary>
+    /// 投射物Id
+    /// </summary>
+    public ProjectileId id;
+    /// <summary>
+    /// 投射物行为类型
+    /// </summary>
+    public ProjectileBehaviorType behaviorType;
+    /// <summary>
+    /// 对象池初始化容量
+    /// </summary>
+    public int initialSize;
+    /// <summary>
+    /// 对象池最大容量
+    /// </summary>
+    public int maxSize;
+    /// <summary>
+    /// 所属阵营
+    /// </summary>
+    public Faction faction;
 }

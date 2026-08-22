@@ -2,6 +2,61 @@
 using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
+/// 敌人ID
+/// </summary>
+public enum EnemyId
+{
+    /// <summary>
+    /// 普通近战
+    /// </summary>
+    NormalMelee,
+    /// <summary>
+    /// 快速近战
+    /// </summary>
+    FastMelee,
+    /// <summary>
+    /// 坦克近战
+    /// </summary>
+    TankMelee,
+    /// <summary>
+    /// 普通远程
+    /// </summary>
+    NormalRanged,
+}
+
+/// <summary>
+/// 敌人行为类型
+/// </summary>
+public enum EnemyBehaviorType
+{
+    /// <summary>
+    /// 普通
+    /// </summary>
+    Normal,
+    /// <summary>
+    /// 快速
+    /// </summary>
+    Fast,
+    /// <summary>
+    /// 远程
+    /// </summary>
+    Shooter,
+    /// <summary>
+    /// 坦克
+    /// </summary>
+    Tank,
+
+    /// <summary>
+    /// 近战
+    /// </summary>
+    Melee,
+    /// <summary>
+    /// 远程
+    /// </summary>
+    Ranged,
+}
+
+/// <summary>
 /// 敌人管理器
 /// </summary>
 public class EnemyManager : MonoBehaviour
@@ -14,16 +69,18 @@ public class EnemyManager : MonoBehaviour
     public float maxAngle = 360f;
     public float minRadius = 10f;
     public float maxRadius = 15f;
-
-    public List<EnemyConfig> enemyConfigs = new List<EnemyConfig>(); 
-    public List<EnemyType> enemyTypes = new List<EnemyType>(); 
-    // 敌人列表
+    // 敌人数据
+    public List<EnemyConfig> enemyConfigs = new List<EnemyConfig>();
+    // 敌人Id列表属性
+    public List<EnemyId> EnemyIds => enemyIds;
+    // 敌人Id列表
+    private List<EnemyId> enemyIds = new List<EnemyId>(); 
+    // 敌人存活列表
     private List<EnemyBase> activeEnemies = new List<EnemyBase>();
-    // 池子满后要取的敌人当前索引
-    private int nowIndex;
-
-    private Dictionary<EnemyType,EnemyConfig> enemyConfigDic = new Dictionary<EnemyType,EnemyConfig>();
-    private Dictionary<EnemyType, ObjectPool<EnemyBase>> pools = new Dictionary<EnemyType, ObjectPool<EnemyBase>>();
+    // 敌人Id、数据绑定字典
+    private Dictionary<EnemyId, EnemyConfig> enemyConfigDic = new Dictionary<EnemyId, EnemyConfig>();
+    // 敌人行为类型对象池字典
+    private Dictionary<EnemyBehaviorType, ObjectPool<EnemyBase>> pools = new Dictionary<EnemyBehaviorType, ObjectPool<EnemyBase>>();
 
     private void Awake()
     {
@@ -34,23 +91,28 @@ public class EnemyManager : MonoBehaviour
     {
         foreach (EnemyConfig config in enemyConfigs)
         {
-            pools.Add(config.type, new ObjectPool<EnemyBase>(() =>
+            if (!pools.ContainsKey(config.behaviorType))
             {
-                return GameObject.Instantiate(config.prefab).GetComponent<EnemyBase>();
-            }, config.initialSize, config.maxSize));
+                pools.Add(config.behaviorType, new ObjectPool<EnemyBase>(() =>
+                {
+                    return GameObject.Instantiate(config.prefab).GetComponent<EnemyBase>();
+                }, config.initialSize, config.maxSize));
+            }
 
-            enemyConfigDic.Add(config.type, config);
-            enemyTypes.Add(config.type);
+            enemyConfigDic.Add(config.id, config);
+            enemyIds.Add(config.id);
         }
     }
 
     /// <summary>
     /// 生成敌人
     /// </summary>
-    public void RealGenerate(EnemyType type)
+    public void RealGenerate(EnemyId id)
     {
+        EnemyConfig config = enemyConfigDic[id];
+        EnemyBehaviorType type = config.behaviorType;
         EnemyBase enemy = pools[type].Get();
-        if (enemy == null) return ;
+        if (enemy == null) return;
 
         // 初始化 设置位置 设置玩家引用
         enemy.SetPlayer(player);
@@ -60,10 +122,15 @@ public class EnemyManager : MonoBehaviour
         Vector2 pos = player.transform.position + dir * radius;
         enemy.SetPos(pos);
 
-        EnemyConfig config = enemyConfigDic[type];
         enemy.InitData(config);
         enemy.Rebirth();
         activeEnemies.Add(enemy);
+        RangedEnemy rangedEnemy = enemy as RangedEnemy;
+        RangedEnemyConfig rangedEnemyConfig = config as RangedEnemyConfig;
+        if (rangedEnemy != null)
+        {
+            rangedEnemy.Init(rangedEnemyConfig);
+        }
     }
 
 
@@ -124,7 +191,7 @@ public class EnemyManager : MonoBehaviour
     /// </summary>
     public void DieAll()
     {
-        for (int i = 0; i < activeEnemies.Count; i++)
+        for (int i = activeEnemies.Count - 1; i >= 0; i--) 
         {
             if (!activeEnemies[i].isDead)
                 activeEnemies[i].Dead();

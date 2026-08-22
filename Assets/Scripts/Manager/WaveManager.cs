@@ -51,7 +51,7 @@ public class WaveManager : MonoBehaviour
             yield return WaitForClear();
 
             player.Pause();
-            BulletManager.instance.KillAllBullets();
+            ProjectileManager.instance.KillAllBullets();
             // 最后一波不进行强化 直接胜利
             if (currentWave == waves.Count)
             {
@@ -80,20 +80,20 @@ public class WaveManager : MonoBehaviour
         for (int i = 0; i < data.enemyCount; i++) 
         {
             yield return new WaitForSeconds(data.generateInterval);
-            EnemyType type = GetEnemyType();
-            EnemyManager.Instance.RealGenerate(type);
+            EnemyId id = GetEnemyId();
+            EnemyManager.Instance.RealGenerate(id);
         }
     }
 
     /// <summary>
-    /// 获取生成敌人的类型
+    /// 获取生成敌人的id
     /// </summary>
     /// <returns></returns>
-    private EnemyType GetEnemyType()
+    private EnemyId GetEnemyId()
     {
-        List<EnemyType> enemyTypes = EnemyManager.Instance.enemyTypes;
-        int random = Random.Range(0, enemyTypes.Count);
-        return enemyTypes[random];
+        List<EnemyId> enemyIds = EnemyManager.Instance.EnemyIds;
+        int random = Random.Range(0, enemyIds.Count);
+        return enemyIds[random];
     }
 
     /// <summary>

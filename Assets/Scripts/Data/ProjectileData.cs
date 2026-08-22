@@ -34,4 +34,10 @@ public class ProjectileData
     /// 击退数据
     /// </summary>
     public RepelData repelData;
+    /// <summary>
+    /// 所属阵营
+    /// </summary>
+    public Faction faction;
+    // 行为类型
+    public ProjectileBehaviorType behaviorType;
 }

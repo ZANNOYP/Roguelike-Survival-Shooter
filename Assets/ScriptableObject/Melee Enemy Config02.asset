@@ -9,15 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4097bd671ed5f8f4eac2e30973c3486f, type: 3}
-  m_Name: Enemy Config03
+  m_Script: {fileID: 11500000, guid: 0060f10a6a19d0a4bbde1a92a3aac58d, type: 3}
+  m_Name: Melee Enemy Config02
   m_EditorClassIdentifier: 
   prefab: {fileID: 8588150799242683227, guid: 067b525ff561b0540b4aa399aa3ed29c, type: 3}
-  moveSpeed: 5
-  exp: 5
-  maxHp: 40
-  initialSize: 10
+  moveSpeed: 12
+  exp: 1
+  maxHp: 10
+  initialSize: 5
   maxSize: 50
-  type: 3
-  color: {r: 0.26666668, g: 0.27058825, b: 0.9843137, a: 1}
-  contactDamage: 4
+  behaviorType: 4
+  color: {r: 0.40784314, g: 0.6431373, b: 0.24705882, a: 1}
+  contactDamage: 1
+  id: 1

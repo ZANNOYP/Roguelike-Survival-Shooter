@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 /// <summary>
 /// 远程武器
@@ -13,15 +15,35 @@ public class RangedWeapon : Weapon
         // 没有敌人进入范围 直接返回
         EnemyBase enemy = EnemyManager.Instance.GetAtkEnemy(data.weaponConfig);
         if (enemy == null) return;
-
+        // 瞄准未结束 返回
         if (!isAimReady) return;
         // 播放音效
-        MusicManager.instance.PlayEff(Eff_Type.Gun);
-
-        Vector2 dir = (enemy.transform.position - transform.position).normalized;
+        PlayAttackSound();
+        // 武器配置数据
         RangedWeaponConfig rwConfig = data.weaponConfig as RangedWeaponConfig;
-        ProjectileConfig projectileConfig = rwConfig.projectileConfig;
-        // 投射物初始化数据
+        // 创建投射物初始化数据
+        ProjectileData projectileData = CreateProjectileData(rwConfig);
+        // 投射物移动方向
+        Vector2 dir = (enemy.transform.position - transform.position).normalized;
+        // 发射投射物
+        FireProjectiles(projectileData, rwConfig, dir);
+    }
+
+    /// <summary>
+    /// 播放攻击音效
+    /// </summary>
+    private void PlayAttackSound()
+    {
+        MusicManager.instance.PlayEff(Eff_Type.Gun);
+    }
+
+    /// <summary>
+    /// 创建投射物数据
+    /// </summary>
+    /// <param name="rwConfig"></param>
+    /// <returns></returns>
+    public ProjectileData CreateProjectileData(RangedWeaponConfig rwConfig)
+    {
         ProjectileData projectileData = new ProjectileData();
 
         projectileData.birthPos = firePoint.position;
@@ -29,18 +51,31 @@ public class RangedWeapon : Weapon
         projectileData.damage = realDamage;
         int realPenetrateCount = (rwConfig.basePenetrateCount + data.bonusPenetrateCount) + playerData.globalPenetrateCount;
         projectileData.penetrateCount = realPenetrateCount;
-        projectileData.moveSpeed = projectileConfig.moveSpeed;
-        projectileData.lifetime = projectileConfig.lifetime;
+        projectileData.moveSpeed = rwConfig.projectileConfig.moveSpeed;
+        projectileData.lifetime = rwConfig.projectileConfig.lifetime;
         RepelData repelData = new RepelData();
         repelData.repelSpeed = rwConfig.repelSpeed;
         repelData.repelTime = rwConfig.repelTime;
         projectileData.repelData = repelData;
+        projectileData.faction = rwConfig.projectileConfig.faction;
+        projectileData.behaviorType = rwConfig.projectileConfig.behaviorType;
+
+        return projectileData;
+    }
+
+    /// <summary>
+    /// 生成投射物
+    /// </summary>
+    /// <param name="rwConfig"></param>
+    /// <param name="dir"></param>
+    public void FireProjectiles(ProjectileData projectileData, RangedWeaponConfig rwConfig, Vector2 dir)
+    {
         // 单发
         if (rwConfig.projectileCount == 1)
         {
-            BulletControl bullet = BulletManager.instance.GetBullet(projectileConfig);
+            ProjectileBase projectile = ProjectileManager.instance.GetProjectile(rwConfig.projectileConfig.id);
             projectileData.moveDir = dir;
-            bullet.Init(projectileData);
+            projectile.Init(projectileData);
             return;
         }
         // 散射
@@ -50,10 +85,10 @@ public class RangedWeapon : Weapon
             float angle = rwConfig.spreadAngle / (rwConfig.projectileCount - 1);
             Vector2 diri = Quaternion.Euler(new Vector3(0, 0, angle * i)) * startDir;
 
-            BulletControl bullet = BulletManager.instance.GetBullet(projectileConfig);
+            ProjectileBase projectile = ProjectileManager.instance.GetProjectile(rwConfig.projectileConfig.id);
 
             projectileData.moveDir = diri;
-            bullet.Init(projectileData);
+            projectile.Init(projectileData);
         }
     }
 

@@ -27,3 +27,4 @@ MonoBehaviour:
   spreadAngle: 0
   basePenetrateCount: 0
   projectileConfig: {fileID: 11400000, guid: 58be3d7464fab9f46b8bbf3fccb2f573, type: 2}
+  faction: 0

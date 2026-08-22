@@ -34,7 +34,7 @@ public class EnemyConfig : ScriptableObject
     /// <summary>
     /// 敌人类型
     /// </summary>
-    public EnemyType type;
+    public EnemyBehaviorType behaviorType;
     /// <summary>
     /// 颜色
     /// </summary>
@@ -43,4 +43,8 @@ public class EnemyConfig : ScriptableObject
     /// 碰撞伤害
     /// </summary>
     public float contactDamage;
+    /// <summary>
+    /// 敌人Id
+    /// </summary>
+    public EnemyId id;
 }

@@ -3,25 +3,25 @@
 ## Music
 
 ### Main Menu:
-- Name: "774883__destructo20__background-music-of-uncertainty"
+- Name: "Menu"
 - Author: Destructo20
 - Source: https://freesound.org/s/774883/
 - License: Creative Commons 0
 
 ### Battle:
-- Name: "721035__sergio1992__action-ambience-music"
+- Name: "Battle"
 - Author: Sergio1992
 - Source: https://freesound.org/s/721035/
 - License: Attribution NonCommercial 4.0
 
 ### Victory:
-- Name: "404025__joshuaempyre__victory-music-cue"
+- Name: "Victory"
 - Author: Joshua Empyre
 - Source: https://freesound.org/s/404025/
 - License: Attribution 4.0
 
 ### Defeat:
-- Name: "856516__coghezzi__game-over-orchestral-stinger-cartoon-defeat (1)"
+- Name: "Defeat"
 - Author: Coghezzi
 - Source: https://freesound.org/s/856516/
 - License: Attribution 4.0

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1265f887c814a284f99a9231f31a85f4, type: 3}
+  m_Name: Ranged Enemy Config01
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 5122058156697743128, guid: 34b6d620b62800c46a2834b28f0a598a, type: 3}
+  moveSpeed: 8
+  exp: 1
+  maxHp: 10
+  initialSize: 5
+  maxSize: 50
+  behaviorType: 5
+  color: {r: 0.8509804, g: 0.34117648, b: 0.7372549, a: 1}
+  contactDamage: 1
+  id: 3
+  moveTime: 2
+  atkDamage: 2
+  atkInterval: 1
+  penetrateCount: 0
+  repelSpeed: 0
+  repelTime: 0
+  projectileCount: 1
+  spreadAngle: 0

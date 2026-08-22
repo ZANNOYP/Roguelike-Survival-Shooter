@@ -2,29 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
-/// 敌人类型
-/// </summary>
-public enum EnemyType
-{
-    /// <summary>
-    /// 普通
-    /// </summary>
-    Normal,
-    /// <summary>
-    /// 快速
-    /// </summary>
-    Fast,
-    /// <summary>
-    /// 远程
-    /// </summary>
-    Shooter,
-    /// <summary>
-    /// 坦克
-    /// </summary>
-    Tank,
-}
-
-/// <summary>
 /// 敌人基类
 /// </summary>
 public class EnemyBase : MonoBehaviour
@@ -33,33 +10,37 @@ public class EnemyBase : MonoBehaviour
     public bool isDead;
     // 特效
     public ParticleSystem parSystem;
-    
     /// <summary>
-    /// 敌人类型
+    /// 敌人行为类型
     /// </summary>
-    public EnemyType type;
+    public EnemyBehaviorType type;
     // 碰撞伤害
     public float ContactDamage => contactDamage;
+
+    // 是否被击退
+    protected bool isRepelled;
+    // 移速
+    protected float moveSpeed;
     // 刚体
-    private Rigidbody2D rb;
+    protected Rigidbody2D rb;
+    // 碰撞器
+    protected Collider2D col;
+
     // 追踪玩家
     private PlayerControl player;
     // 敌人生命
     private EnemyHealth health;
     // 动画
     private Animator anim;
-    // 是否被击退
-    private bool isRepelled;
     // 图片渲染
     private SpriteRenderer sr;
     // 碰撞伤害
     private float contactDamage;
     // 经验值
     private int exp;
-    // 移速
-    private float moveSpeed;
+    
 
-    private void Awake()
+    protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         health = GetComponent<EnemyHealth>();
@@ -68,7 +49,13 @@ public class EnemyBase : MonoBehaviour
         parSystem.GetComponent<ParticleSystem>().gameObject.SetActive(false);
         health.RegisterRepelAction(Repel);
         sr = GetComponent<SpriteRenderer>();
+        col = GetComponent<Collider2D>();
         isDead = true;
+    }
+
+    protected virtual void Start()
+    {
+        
     }
 
     // Update is called once per frame
@@ -89,6 +76,9 @@ public class EnemyBase : MonoBehaviour
         Vector2 dir = (player.transform.position - transform.position).normalized;
         Vector2 vel = dir * moveSpeed;
         rb.velocity = vel;
+
+        Boundary boundary = BoundaryManager.instance.GetBoundary(col.bounds);
+        transform.position = BoundaryManager.instance.ClampPosition(transform.position, boundary);
     }
 
     /// <summary>
@@ -101,7 +91,7 @@ public class EnemyBase : MonoBehaviour
         exp = config.exp;
         sr.color = config.color;
         health.SetMaxHp(config.maxHp);
-        type = config.type;
+        type = config.behaviorType;
         contactDamage = config.contactDamage;
     }
 
@@ -156,7 +146,7 @@ public class EnemyBase : MonoBehaviour
     /// <summary>
     /// 死亡，处理逻辑以及播放动画
     /// </summary>
-    public void Dead()
+    public virtual void Dead()
     {
         if (isDead) return;
         isDead = true;

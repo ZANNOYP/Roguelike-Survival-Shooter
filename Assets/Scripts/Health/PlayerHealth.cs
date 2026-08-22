@@ -17,6 +17,8 @@ public class PlayerHealth : Health
     public Image delayFill;
     // 延迟条变化速度
     public float delaySpeed = 5f;
+    // 所属阵营
+    public override Faction Faction => Faction.Player;
     // 玩家死亡事件
     private Action<bool> deadAction;
     // 玩家运行时数据

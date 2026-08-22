@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de7e0d71c0393034689ca2a8a482a551, type: 3}
   m_Name: Projectile Config03
   m_EditorClassIdentifier: 
-  prefab: {fileID: 6170814025563950552, guid: 079694e1f9a631441bc017a88897b9f7, type: 3}
+  prefab: {fileID: 4072190321437165325, guid: 079694e1f9a631441bc017a88897b9f7, type: 3}
   moveSpeed: 25
   lifetime: 0.2
+  id: 2
+  behaviorType: 0
+  initialSize: 5
+  maxSize: 50
