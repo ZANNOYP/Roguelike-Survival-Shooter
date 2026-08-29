@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Melee Enemy Config01
   m_EditorClassIdentifier: 
   prefab: {fileID: 8588150799242683227, guid: 067b525ff561b0540b4aa399aa3ed29c, type: 3}
-  moveSpeed: 8
+  moveSpeed: 4
   exp: 3
   maxHp: 20
   initialSize: 5
@@ -22,3 +22,4 @@ MonoBehaviour:
   color: {r: 0.52156866, g: 0.21568628, b: 0.21568628, a: 1}
   contactDamage: 2
   id: 0
+  defaultScale: {x: 1, y: 0.76, z: 1}

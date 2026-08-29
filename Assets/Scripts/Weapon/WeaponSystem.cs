@@ -64,6 +64,11 @@ public class WeaponSystem : MonoBehaviour
         {
             weapon.Atk();
             float interval = weapon.data.weaponConfig.atkInterval / playerData.fireRateMultiplier;
+            MeleeWeaponConfig mwConfig = weapon.data.weaponConfig as MeleeWeaponConfig;
+            if (mwConfig != null)
+            {
+                interval += mwConfig.atkDuration;
+            }
             yield return new WaitForSeconds(interval);
         }
     }

@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: "\u624B\u67AA"
   description: "\u4F24\u5BB3\u4E2D,\u5C04\u901F\u8F83\u6162,\u65E0\u7A7F\u900F"
-  baseDamage: 10
-  atkInterval: 1
+  baseDamage: 12
+  atkInterval: 1.2
   prefab: {fileID: 5569301255901622100, guid: 8c0598e9332b5ab4891704b0fa449b36, type: 3}
-  range: 20
-  repelSpeed: 20
+  range: 15
+  repelSpeed: 5
   repelTime: 0.2
   weaponSprite: {fileID: 1299494962, guid: 790888a9c3df49a4a975f9fe8f5c3d12, type: 3}
-  spritePos: {x: 0.94, y: -0.15}
+  spritePos: {x: 0.8, y: 0}
   spriteScale: 0.1342239
   projectileCount: 1
   spreadAngle: 0
   basePenetrateCount: 0
   projectileConfig: {fileID: 11400000, guid: 70ca11f447424864fafa6f44fb342410, type: 2}
-  faction: 0
+  firePoint: {x: 0.81, y: 0}

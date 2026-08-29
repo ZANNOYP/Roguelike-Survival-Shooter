@@ -8,10 +8,6 @@ using UnityEngine;
 public class MeleeWeaponConfig : WeaponConfig
 {
     /// <summary>
-    /// 攻击武器旋转角度
-    /// </summary>
-    public float atkAngle;
-    /// <summary>
     /// 攻击持续时间
     /// </summary>
     public float atkDuration;

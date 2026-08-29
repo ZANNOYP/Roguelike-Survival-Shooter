@@ -38,6 +38,8 @@ public class EnemyBase : MonoBehaviour
     private float contactDamage;
     // 经验值
     private int exp;
+    // 缩放
+    private Vector3 scale;
     
 
     protected virtual void Awake()
@@ -93,6 +95,7 @@ public class EnemyBase : MonoBehaviour
         health.SetMaxHp(config.maxHp);
         type = config.behaviorType;
         contactDamage = config.contactDamage;
+        scale = config.defaultScale;
     }
 
     /// <summary>
@@ -175,7 +178,7 @@ public class EnemyBase : MonoBehaviour
     public void Hide()
     {
         gameObject.SetActive(false);
-        transform.localScale = Vector3.one;
+        transform.localScale = scale;
         parSystem.gameObject.SetActive(false);
         parSystem.Stop();
         EnemyManager.Instance.RemoveDeadEnemy(this);

@@ -55,20 +55,21 @@ public abstract class Weapon : MonoBehaviour
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
 
-        weaponRoot.rotation = Quaternion.RotateTowards(weaponRoot.rotation, targetRotation, rotateSpeed * Time.deltaTime);
-        
+        //weaponRoot.rotation = Quaternion.RotateTowards(weaponRoot.rotation, targetRotation, rotateSpeed * Time.deltaTime);
+        weaponRoot.rotation = targetRotation;
+
         Vector2 right = weaponRoot.right;
         sr.flipY = right.x >= 0 ? false : true; 
 
-        float angle2 = Quaternion.Angle(weaponRoot.rotation, targetRotation);
-        if (angle2 < 10f)
-        {
-            isAimReady = true;
-        }
-        else
-        {
-            isAimReady = false;
-        }
+        //float angle2 = Quaternion.Angle(weaponRoot.rotation, targetRotation);
+        //if (angle2 < 10f)
+        //{
+        //    isAimReady = true;
+        //}
+        //else
+        //{
+        //    isAimReady = false;
+        //}
     }
 
     /// <summary>

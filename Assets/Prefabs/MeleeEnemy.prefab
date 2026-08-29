@@ -4920,7 +4920,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11.73, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.76, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9093454850696023855}
@@ -5052,10 +5052,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0a7bfb11b3b4c94c9d129d7d6a4eb7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 6
   isDead: 0
   parSystem: {fileID: 7343019680081743400}
-  exp: 1
+  type: 0
 --- !u!114 &5512891339834237505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5069,7 +5068,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nowHp: 0
-  maxHp: 30
 --- !u!95 &2897236704038589283
 Animator:
   serializedVersion: 5

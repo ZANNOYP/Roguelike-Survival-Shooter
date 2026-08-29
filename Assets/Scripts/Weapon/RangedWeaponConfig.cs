@@ -23,5 +23,8 @@ public class RangedWeaponConfig : WeaponConfig
     /// 投射物配置数据
     /// </summary>
     public ProjectileConfig projectileConfig;
-    
+    /// <summary>
+    /// 开火点
+    /// </summary>
+    public Vector2 firePoint;
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ranged Enemy Config01
   m_EditorClassIdentifier: 
   prefab: {fileID: 5122058156697743128, guid: 34b6d620b62800c46a2834b28f0a598a, type: 3}
-  moveSpeed: 8
+  moveSpeed: 2
   exp: 1
   maxHp: 10
   initialSize: 5
@@ -22,6 +22,7 @@ MonoBehaviour:
   color: {r: 0.8509804, g: 0.34117648, b: 0.7372549, a: 1}
   contactDamage: 1
   id: 3
+  defaultScale: {x: 1, y: 0.76, z: 1}
   moveTime: 2
   atkDamage: 2
   atkInterval: 1

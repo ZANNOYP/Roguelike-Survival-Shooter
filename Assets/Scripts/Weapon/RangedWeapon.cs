@@ -15,8 +15,8 @@ public class RangedWeapon : Weapon
         // 没有敌人进入范围 直接返回
         EnemyBase enemy = EnemyManager.Instance.GetAtkEnemy(data.weaponConfig);
         if (enemy == null) return;
-        // 瞄准未结束 返回
-        if (!isAimReady) return;
+        //// 瞄准未结束 返回
+        //if (!isAimReady) return;
         // 播放音效
         PlayAttackSound();
         // 武器配置数据
@@ -98,6 +98,7 @@ public class RangedWeapon : Weapon
     public void SetFirePointPos()
     {
         WeaponConfig config = data.weaponConfig;
-        firePoint.localPosition = config.spritePos;
+        RangedWeaponConfig rwConfig = config as RangedWeaponConfig;
+        firePoint.localPosition = rwConfig.firePoint;
     }
 }

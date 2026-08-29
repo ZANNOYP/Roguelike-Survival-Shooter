@@ -47,4 +47,8 @@ public class EnemyConfig : ScriptableObject
     /// 敌人Id
     /// </summary>
     public EnemyId id;
+    /// <summary>
+    /// 默认缩放
+    /// </summary>
+    public Vector3 defaultScale;
 }
